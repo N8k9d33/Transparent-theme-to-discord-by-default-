@@ -1,0 +1,300 @@
+/**
+ * @name Midnight Magic Glass
+ * @description Midnight layout with full magic-glass surface layer and window transparency.
+ * @version 0.9.0
+ Special thanks https://github.com/refact0r/midnight-discord?tab=readme-ov-file
+ */
+
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+
+:root {
+    /* 1. Color Base letters (e.g #ffffff, #e0e0e0, #ffb3d9) */
+    --my-text-color: #ff2a85;
+
+ /* 2. Dimming of the letters only (in %; 100% = full brightness, 70% = dimmed) */
+    --my-text-brightness: 100%;
+
+    /* 3. Panel Windows */
+    --my-glass-color: 70, 35, 110;
+    --my-glass-opacity: 0.04;
+    --my-glass-blur: 3px;
+
+    /* Calculated text color based on brightness (does not affect the background) */
+    --final-text-color: color-mix(in srgb, var(--my-text-color) var(--my-text-brightness), black);
+}
+
+/* Applicationof the calculated color applied exclusively to the text */
+:root, .theme-dark, .theme-light {
+    --text-normal: var(--final-text-color) !important;
+    --text-muted: var(--final-text-color) !important;
+    --text-0: var(--final-text-color) !important;
+    --text-1: var(--final-text-color) !important;
+    --text-2: var(--final-text-color) !important;
+    --text-3: var(--final-text-color) !important;
+    --text-4: var(--final-text-color) !important;
+    --text-5: var(--final-text-color) !important;
+    --header-primary: var(--final-text-color) !important;
+    --header-secondary: var(--final-text-color) !important;
+    --interactive-normal: var(--final-text-color) !important;
+    --interactive-hover: var(--final-text-color) !important;
+    --interactive-active: var(--final-text-color) !important;
+
+    /* Midnight & Glass theme settings */
+    --colors: on;
+    --bg-1: rgba(112, 129, 184, 0.32);
+    --bg-2: rgba(88, 104, 153, 0.26);
+    --bg-3: rgba(56, 68, 104, 0.20);
+    --bg-4: transparent;
+    --hover: rgba(255, 255, 255, 0.055);
+    --active: rgba(255, 255, 255, 0.085);
+    --active-2: rgba(255, 255, 255, 0.12);
+    --message-hover: rgba(255, 255, 255, 0.045);
+
+    --background-primary: transparent !important;
+    --background-secondary: transparent !important;
+    --background-secondary-alt: transparent !important;
+    --background-tertiary: transparent !important;
+    --background-floating: rgba(8, 10, 18, 0.88) !important;
+    --bg-base-primary: transparent !important;
+    --bg-base-secondary: transparent !important;
+    --bg-base-tertiary: transparent !important;
+    --bg-overlay-chat: transparent !important;
+    --app-background: transparent !important;
+    --app-background-frame: transparent !important;
+    --custom-channel-members-bg: transparent !important;
+
+    --accent-1: #b9f4ff;
+    --accent-2: #78e6ff;
+    --accent-3: #29c7df;
+    --accent-4: #18a9c3;
+    --accent-5: #12879e;
+    --accent-new: #ff4f8b;
+    --mention: linear-gradient(to right, rgba(120, 230, 255, 0.18), transparent 45%);
+    --mention-hover: linear-gradient(to right, rgba(120, 230, 255, 0.24), transparent 45%);
+    --reply: linear-gradient(to right, rgba(255, 255, 255, 0.12), transparent 45%);
+    --reply-hover: linear-gradient(to right, rgba(255, 255, 255, 0.18), transparent 45%);
+
+    --online: #4ee7a8;
+    --dnd: #ff4f8b;
+    --idle: #ffd166;
+    --streaming: #bd8cff;
+    --offline: rgba(235, 242, 255, 0.72);
+
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.11);
+    --border-hover: rgba(120, 230, 255, 0.26);
+    --button-border: rgba(255, 255, 255, 0.09);
+
+    --magic-glass-panel: rgba(var(--my-glass-color), var(--my-glass-opacity));
+    --magic-glass-panel-strong: rgba(var(--my-glass-color), calc(var(--my-glass-opacity) + 0.08));
+    --magic-glass-soft: rgba(var(--my-glass-color), calc(var(--my-glass-opacity) / 2));
+    --magic-glass-border: transparent;
+    --magic-glass-blur: blur(var(--my-glass-blur)) saturate(1.05);
+}
+
+/* Main body configuration */
+body {
+    --font: 'figtree';
+    --code-font: '';
+    font-weight: 400;
+    --gap: 12px;
+    --divider-thickness: 4px;
+    --border-thickness: 1px;
+    --animations: on;
+    --list-item-transition: 0.2s ease;
+    --dms-icon-svg-transition: 0.4s ease;
+    --border-hover-transition: 0.2s ease;
+    --top-bar-height: var(--gap);
+    --top-bar-button-position: titlebar;
+    --top-bar-title-position: off;
+    --subtle-top-bar-title: off;
+    --custom-window-controls: on;
+    --window-control-size: 14px;
+    --custom-dms-icon: custom;
+    --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg');
+    --dms-icon-svg-size: 90%;
+    --dms-icon-color-before: var(--icon-subtle);
+    --dms-icon-color-after: var(--white);
+    --custom-dms-background: off;
+    --dms-background-image-url: url('');
+    --dms-background-image-size: cover;
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+    --background-image: on;
+    --background-image-url: url(https://examplelink.com);
+    --transparency-tweaks: on;
+    --remove-bg-layer: on;
+    --panel-blur: on;
+    --blur-amount: 22px;
+    --bg-floating: rgba(8, 10, 18, 0.88);
+    --custom-chatbar: off;
+    --chatbar-height: 47px;
+    --small-user-panel: on;
+}
+
+body, #app-mount {
+    color: var(--final-text-color) !important;
+    filter: none !important;
+}
+
+/* Background image (separated from text filters) */
+body::before {
+    content: "" !important;
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: -9999 !important;
+    background-image: var(--background-image-url) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    pointer-events: none !important;
+}
+
+/* Resetting default backgrounds to transparent */
+html, body, #app-mount,
+[class*="appMount_"], [class*="app_"], [class*="bg_"],
+[class*="layers_"], [class*="layer_"], [class*="base_"],
+[class*="baseLayer_"], [class*="appAsidePanelWrapper_"], [class*="notAppAsidePanel_"],
+[class*="sidebar_"], [class*="chat_"], [class*="chatContent_"],
+[class*="content_"], [class*="page_"], [class*="container__01ae2"],
+[class*="container_c48ade"], [class*="base_c48ade"], [class*="content_c48ade"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html::before, html::after, body::after,
+#app-mount::before, #app-mount::after,
+[class*="app_"]::before, [class*="app_"]::after,
+[class*="bg_"]::before, [class*="bg_"]::after,
+[class*="layers_"]::before, [class*="layers_"]::after,
+[class*="container__9293f"]::before, [class*="container__9293f"]::after,
+[class*="themed__9293f"]::before, [class*="themed__9293f"]::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* /* Resetting default background to transparent (main containers) */
+[class*="guildsNav_"], [class*="tree_"][class*="guilds"],
+[class*="sidebar_"], [class*="chat_"], [class*="membersWrap_"],
+[class*="peopleColumn_"], [class*="nowPlayingColumn_"],
+[class*="guilds_"], nav[aria-label="Servers"], [data-list-id="guildsnav"],
+[class*="container__2637a"], [class*="privateChannels_"],
+[class*="messagesWrapper_"], [class*="scrollerInner_"], [class*="panels_"] {
+    background: var(--magic-glass-panel) !important;
+    border: 1px solid var(--magic-glass-border) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 46px rgba(0,0,0,0.18) !important;
+    backdrop-filter: var(--magic-glass-blur) !important;
+    -webkit-backdrop-filter: var(--magic-glass-blur) !important;
+}
+
+/* Search and chat bars */
+[class*="container__9293f"], [class*="themed__9293f"],
+[class*="searchBar_"], [class*="searchBarComponent_"],
+[class*="channelTextArea_"], [class*="scrollableContainer_"] {
+    background: var(--magic-glass-panel-strong) !important;
+    border: 1px solid var(--magic-glass-border) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 12px 30px rgba(0,0,0,0.16) !important;
+    backdrop-filter: blur(20px) saturate(1.34) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.34) !important;
+    border-radius: 14px !important;
+}
+
+/* Clearing backgrounds of internal elements */
+[class*="sidebar_"] [class*="containerDefault_"], [class*="sidebar_"] [class*="link_"],
+[class*="sidebar_"] [class*="channel_"], [class*="sidebar_"] [class*="interactive_"],
+[class*="sidebar_"] [class*="wrapper_"], [class*="sidebar_"] [class*="content_"],
+[class*="privateChannels_"] [class*="channel_"], [class*="members_"] [class*="member_"],
+[class*="guildsNav_"] [class*="listItem_"], [class*="guildsNav_"] [class*="childWrapper_"] {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Hover effects (Hover / Active) */
+[class*="containerDefault_"] [class*="link_"]:hover,
+[class*="channel_"] [class*="interactive_"]:hover,
+[class*="member_"]:hover, [class*="clickable_"]:hover,
+[class*="modeSelected_"] [class*="link_"],
+[class*="interactiveSelected_"], [aria-selected="true"] {
+    background: var(--magic-glass-soft) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 8px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08) !important;
+    backdrop-filter: blur(14px) saturate(1.2) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.2) !important;
+}
+
+/* Bubbles (Tooltips) and Pop Ups */
+[class*="tooltip_"], [role="tooltip"] {
+    background: rgba(18, 22, 38, 0.68) !important;
+    color: var(--final-text-color) !important;
+    border: 1px solid rgba(120, 230, 255, 0.20) !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(28px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(1.4) !important;
+    padding: 7px 12px !important;
+    font-weight: 600 !important;
+}
+
+/* Attachments and Embedded Cards */
+[class*="attachment_"], [class*="messageAttachment_"],
+[class*="embed_"], [class*="embedFull_"], [class*="itemCard_"], [class*="card_"] {
+    background: var(--magic-glass-panel-strong) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    backdrop-filter: blur(20px) saturate(1.28) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.28) !important;
+}
+
+/* Notofications / Badges */
+[class*="newBadge_"], [class*="unreadPill_"], [class*="numberBadge_"], [class*="baseShapeRound_"] {
+    background: rgba(12, 14, 24, 0.88) !important;
+    color: #c9fbff !important;
+    border: 1px solid rgba(120, 230, 255, 0.72) !important;
+    box-shadow: 0 0 0 2px rgba(20, 190, 210, 0.22), 0 0 16px rgba(120, 230, 255, 0.42) !important;
+}
+
+/* User Popouts and Profiles */
+[class*="userPopout_"], [class*="userProfileOuter_"], [class*="userProfileInner_"] {
+    background: #232428 !important;
+    color: var(--final-text-color) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+[class*="userProfileInner_"], [class*="userPopoutInner_"] {
+    background: #2b2d31 !important;
+}
+
+/* Settings Window (Standard Sidebar View) */
+[class*="standardSidebarView_"] {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #313338 !important;
+    color: var(--final-text-color) !important;
+    z-index: 9999 !important;
+}
+
+[class*="standardSidebarView_"] [class*="sidebarRegion_"],
+[class*="standardSidebarView_"] [class*="sidebarRegionScroller_"] {
+    background: #2b2d31 !important;
+}
+
+[class*="standardSidebarView_"] [class*="contentRegion_"],
+[class*="standardSidebarView_"] [class*="contentRegionScroller_"] {
+    background: #313338 !important;
+}
+
+[class*="standardSidebarView_"] [class*="selected_"],
+[class*="standardSidebarView_"] [aria-selected="true"] {
+    background: #404249 !important;
+    color: #ffffff !important;
+}
