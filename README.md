@@ -54,3 +54,11 @@ Simply replace `https://examplelink.com` in the configuration with the direct li
 <p align="center">
   <img width="900" alt="Background image settings" src="https://github.com/user-attachments/assets/6fd13025-3238-47e5-90a5-30d77dc0f315" />
 </p>
+
+<details>
+  <summary>Sneaky engineer</summary>
+  <br>
+  <p align="center">
+    <img width="300" alt="giphy" src="https://github.com/user-attachments/assets/6f43ebc1-1334-4adf-9efe-b7d433df76fa" />
+  </p>
+</details>
