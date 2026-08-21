@@ -4,7 +4,7 @@ A quick guide on how to use this
 It provides an example of what can be achieved thanks to this.
 <img width="2461" height="1403" alt="obraz" src="https://github.com/user-attachments/assets/0360d6e4-a726-4385-a94a-705c494709be" />
 
-
+## Q&A
 ## How to change color font?
 
 So, first find a snippet of code that looks like this. And then set the color you want (I recommend using this site).
