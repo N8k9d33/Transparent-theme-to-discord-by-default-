@@ -1,2 +1,4 @@
 # Discord-theme
-AI theme but tested and refined by me (css) to vencord or better discord
+A quick guide on how to use this
+
+
