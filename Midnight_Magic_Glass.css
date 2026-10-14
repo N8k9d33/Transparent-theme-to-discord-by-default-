@@ -1,38 +1,42 @@
 /**
  * @name Midnight Magic Glass
  * @description Midnight layout with full magic-glass surface layer and window transparency.
- * @version 0.9.0
+ * @version 0.9.1
  Special thanks https://github.com/refact0r/midnight-discord?tab=readme-ov-file
  */
 
 @import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
 
 :root {
-    /* 1. Color Base letters (e.g #ffffff, #e0e0e0, #ffb3d9) */
+    /* 1. Base text color (e.g. #ffffff, #e0e0e0, #ffb3d9) */
     --my-text-color: #ff2a85;
 
- /* 2. Dimming of the letters only (in %; 100% = full brightness, 70% = dimmed) */
+    /* 2. Dimming of the text only (100% = full brightness, 70% = dimmed) */
     --my-text-brightness: 100%;
 
-    /* 3. Panel Windows */
+    /* 2b. Brightness of muted text (timestamps, descriptions) - 100% = same as normal text */
+    --my-muted-brightness: 78%;
+
+    /* 3. Panel windows */
     --my-glass-color: 70, 35, 110;
     --my-glass-opacity: 0.04;
     --my-glass-blur: 3px;
 
-    /* Calculated text color based on brightness (does not affect the background) */
+    /* Calculated text color (does not affect the background) */
     --final-text-color: color-mix(in srgb, var(--my-text-color) var(--my-text-brightness), black);
+    --final-muted-color: color-mix(in srgb, var(--final-text-color) var(--my-muted-brightness), black);
 }
 
-/* Applicationof the calculated color applied exclusively to the text */
+/* Apply the calculated color exclusively to text */
 :root, .theme-dark, .theme-light {
     --text-normal: var(--final-text-color) !important;
-    --text-muted: var(--final-text-color) !important;
+    --text-muted: var(--final-muted-color) !important;
     --text-0: var(--final-text-color) !important;
     --text-1: var(--final-text-color) !important;
     --text-2: var(--final-text-color) !important;
-    --text-3: var(--final-text-color) !important;
-    --text-4: var(--final-text-color) !important;
-    --text-5: var(--final-text-color) !important;
+    --text-3: var(--final-muted-color) !important;
+    --text-4: var(--final-muted-color) !important;
+    --text-5: var(--final-muted-color) !important;
     --header-primary: var(--final-text-color) !important;
     --header-secondary: var(--final-text-color) !important;
     --interactive-normal: var(--final-text-color) !important;
@@ -120,7 +124,8 @@ body {
     --dms-background-image-size: cover;
     --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
     --background-image: on;
-    --background-image-url: url(https://examplelink.com);
+    /* IMPORTANT: replace with a real image link (this is just a placeholder and won't work) */
+    --background-image-url: url('https://examplelink.com');
     --transparency-tweaks: on;
     --remove-bg-layer: on;
     --panel-blur: on;
@@ -150,7 +155,7 @@ body::before {
     pointer-events: none !important;
 }
 
-/* Resetting default backgrounds to transparent */
+/* Reset default backgrounds to transparent */
 html, body, #app-mount,
 [class*="appMount_"], [class*="app_"], [class*="bg_"],
 [class*="layers_"], [class*="layer_"], [class*="base_"],
@@ -178,13 +183,14 @@ html::before, html::after, body::after,
     content: none !important;
 }
 
-/* /* Resetting default background to transparent (main containers) */
+/* Main containers - glass panel.
+   (messagesWrapper_ and scrollerInner_ were removed - they sit inside chat_,
+   so they doubled the background and blur and put extra load on the GPU) */
 [class*="guildsNav_"], [class*="tree_"][class*="guilds"],
 [class*="sidebar_"], [class*="chat_"], [class*="membersWrap_"],
 [class*="peopleColumn_"], [class*="nowPlayingColumn_"],
 [class*="guilds_"], nav[aria-label="Servers"], [data-list-id="guildsnav"],
-[class*="container__2637a"], [class*="privateChannels_"],
-[class*="messagesWrapper_"], [class*="scrollerInner_"], [class*="panels_"] {
+[class*="container__2637a"], [class*="privateChannels_"], [class*="panels_"] {
     background: var(--magic-glass-panel) !important;
     border: 1px solid var(--magic-glass-border) !important;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 46px rgba(0,0,0,0.18) !important;
@@ -204,7 +210,7 @@ html::before, html::after, body::after,
     border-radius: 14px !important;
 }
 
-/* Clearing backgrounds of internal elements */
+/* Clear backgrounds of internal elements */
 [class*="sidebar_"] [class*="containerDefault_"], [class*="sidebar_"] [class*="link_"],
 [class*="sidebar_"] [class*="channel_"], [class*="sidebar_"] [class*="interactive_"],
 [class*="sidebar_"] [class*="wrapper_"], [class*="sidebar_"] [class*="content_"],
@@ -217,21 +223,22 @@ html::before, html::after, body::after,
     -webkit-backdrop-filter: none !important;
 }
 
-/* Hover effects (Hover / Active) */
+/* Hover / Active effects
+   The outline uses an inset box-shadow instead of a border,
+   so elements don't shift by 1px on hover. */
 [class*="containerDefault_"] [class*="link_"]:hover,
 [class*="channel_"] [class*="interactive_"]:hover,
 [class*="member_"]:hover, [class*="clickable_"]:hover,
 [class*="modeSelected_"] [class*="link_"],
 [class*="interactiveSelected_"], [aria-selected="true"] {
     background: var(--magic-glass-soft) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
     border-radius: 8px !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08) !important;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.08) !important;
     backdrop-filter: blur(14px) saturate(1.2) !important;
     -webkit-backdrop-filter: blur(14px) saturate(1.2) !important;
 }
 
-/* Bubbles (Tooltips) and Pop Ups */
+/* Tooltips */
 [class*="tooltip_"], [role="tooltip"] {
     background: rgba(18, 22, 38, 0.68) !important;
     color: var(--final-text-color) !important;
@@ -243,7 +250,16 @@ html::before, html::after, body::after,
     font-weight: 600 !important;
 }
 
-/* Attachments and Embedded Cards */
+/* Context menus and dialogs - without this they would be fully
+   transparent (since all --background-* variables are transparent) */
+[class*="menu_"][role="menu"], [role="dialog"] {
+    background-color: var(--background-floating) !important;
+    backdrop-filter: blur(20px) saturate(1.3) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.3) !important;
+    border-radius: 10px !important;
+}
+
+/* Attachments and embed cards */
 [class*="attachment_"], [class*="messageAttachment_"],
 [class*="embed_"], [class*="embedFull_"], [class*="itemCard_"], [class*="card_"] {
     background: var(--magic-glass-panel-strong) !important;
@@ -252,7 +268,7 @@ html::before, html::after, body::after,
     -webkit-backdrop-filter: blur(20px) saturate(1.28) !important;
 }
 
-/* Notofications / Badges */
+/* Notifications / Badges */
 [class*="newBadge_"], [class*="unreadPill_"], [class*="numberBadge_"], [class*="baseShapeRound_"] {
     background: rgba(12, 14, 24, 0.88) !important;
     color: #c9fbff !important;
@@ -260,7 +276,7 @@ html::before, html::after, body::after,
     box-shadow: 0 0 0 2px rgba(20, 190, 210, 0.22), 0 0 16px rgba(120, 230, 255, 0.42) !important;
 }
 
-/* User Popouts and Profiles */
+/* User popouts and profiles */
 [class*="userPopout_"], [class*="userProfileOuter_"], [class*="userProfileInner_"] {
     background: #232428 !important;
     color: var(--final-text-color) !important;
@@ -272,7 +288,7 @@ html::before, html::after, body::after,
     background: #2b2d31 !important;
 }
 
-/* Settings Window (Standard Sidebar View) */
+/* Settings window (Standard Sidebar View) */
 [class*="standardSidebarView_"] {
     position: fixed !important;
     inset: 0 !important;
@@ -297,4 +313,18 @@ html::before, html::after, body::after,
 [class*="standardSidebarView_"] [aria-selected="true"] {
     background: #404249 !important;
     color: #ffffff !important;
+}
+
+/* Small extras: thin transparent scrollbars and text selection color */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(120, 230, 255, 0.35); }
+
+::selection {
+    background: rgba(120, 230, 255, 0.30);
+    color: #ffffff;
 }
