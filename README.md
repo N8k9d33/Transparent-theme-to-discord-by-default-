@@ -58,6 +58,7 @@ The `body { ... }` block, the `--background-image-url` line.
 - Keep `url('...')` and the quotes.
 - The image is stretched to cover the whole screen (`cover`) and centered. You can change this in the `Background image` section (`background-size`, `background-position`).
 - The `examplelink.com` placeholder is not a real image, so you won't see a background until you replace it.
+- Remember, you must select "Allow" to enable it to work. <img width="723" height="277" alt="obraz" src="https://github.com/user-attachments/assets/23a9c2c2-6ff1-424e-8e2a-891bd0355c2c" />
 
 ---
 
@@ -137,3 +138,8 @@ Here you edit colors directly inside the rules. Search by the comment name.
 - **Some panels went back to the default look after a Discord update:** the theme relies on Discord's internal class names (e.g. `container__2637a`), which Discord changes from time to time. This is not a mistake in your settings.
 - **Font doesn't change:** the font from `--font` must be installed on your system.
 - **Something broke after editing:** most often a semicolon `;`, quote, or bracket is missing. Undo your last change (`Ctrl+Z`).
+
+  
+## 8. Fast install
+- download from my release: https://github.com/N8k9d33/Transparent-theme-to-discord-by-default-/releases
+- put to 
