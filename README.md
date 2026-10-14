@@ -10,9 +10,6 @@ A quick guide on how to customize and use this theme.
 
 ---
 
-<h2 align="center"> Q&A / Customization Guide</h2>
-
-<br>
 
 # Customization Guide – (when they come up with a name)
 
